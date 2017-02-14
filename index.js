@@ -18,10 +18,10 @@ var recId;
 // Create the handler that responds to the Alexa Request.
 exports.handler = function (event, context) {
     // Create an instance of the Salesforce skill.
-    recId = event.queryStringParameters ? event.queryStringParameters.id : 'no-id';
+    recId = event;
     org.authenticate({ username: username, password: password }).then(function(){
         
-        org.apexRest({ uri: process.env.EV_APEXREST, method: 'POST', body: recId});
+        org.apexRest({ uri: process.env.EV_APEXREST, method: 'POST', body: JSON.stringify(recId)});
     console.log('authenticated');
   });
 };
